@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "TAN-NIMBUS";
+    src: url(../../Assets/Fonts/TAN-NIMBUS.ttf);
+}
+
+@font-face {
+    font-family: "SourceSerifPro";
+    src: url(../../Assets/Fonts/SourceSerifPro-Regular.ttf);
+}
+
 :root {
     --primary-dark: #8C2034;   /* Vermelho escuro */
     --primary-light: #BF4B60;  /* Vermelho-rosado vibrante */
@@ -7,6 +17,7 @@
 }
 
 body {
+    font-family: "SourceSerifPro";
 
     background-color: #c4929b;
     color: var(--primary-dark);
@@ -34,6 +45,7 @@ main {
 
 h1, h2, h3, hr {
     color: var(--primary-dark);
+    font-family: "TAN-NIMBUS";
 }
 
 p.aviso {
