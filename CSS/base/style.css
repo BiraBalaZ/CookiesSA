@@ -1,0 +1,99 @@
+:root {
+    --primary-dark: #8C2034;   /* Vermelho escuro */
+    --primary-light: #BF4B60;  /* Vermelho-rosado vibrante */
+    --secondary-light: #F2B6C1; /* Rosa claro */
+    --accent-color: #8F323C;   /* Vermelho suave */
+    --dark-color: #400102;     /* Vermelho muito escuro */
+}
+
+body {
+
+    background-color: #c4929b;
+    color: var(--primary-dark);
+
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    text-align: center;
+    background-color: var(--secondary-light);
+    margin: auto;
+    /* max-width: 1300px; */
+    max-width: 425px;
+    color: var(--primary-dark);
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2, h3, hr {
+    color: var(--primary-dark);
+}
+
+p.aviso {
+    font-size: small;
+}
+
+input, textarea {
+    width: 250px;
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
+    border-radius: 10px 2px;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: none;
+    width: 300px;
+}
+
+input:hover {
+    background-color: #c5a1a7;
+}
+
+
+input[type="submit"] {
+    width: 95px;
+    height: 35px;
+    background-color: var(--primary-dark);
+    color: var(--secondary-light);
+}
+
+input[type="submit"]:hover {
+    background-color: var(--dark-color);
+    cursor: pointer;
+}
+
+div.cookies input {
+    border-radius: 10px 2px;
+}
+
+input[type="number"] {
+    text-align: center;
+    width: 50px;
+}
+
+footer {
+    background-color: var(--secondary-light);
+    color: var(--primary-light);
+    padding: 1px;
+}
+
+footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: .7s;
+}
+
+footer a:hover {
+    color: var(--primary-dark);
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+}
