@@ -1,0 +1,18 @@
+footer {
+    background-color: var(--secondary-light);
+    color: var(--primary-light);
+    padding: 1px;
+}
+
+footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: .7s;
+}
+
+footer a:hover {
+    color: var(--primary-dark);
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+}

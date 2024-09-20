@@ -17,6 +17,8 @@
 }
 
 body {
+    text-align: center;
+    
     font-family: "SourceSerifPro";
 
     background-color: #c4929b;
@@ -27,10 +29,8 @@ body {
 }
 
 main {
-    text-align: center;
     background-color: var(--secondary-light);
     margin: auto;
-    /* max-width: 1300px; */
     max-width: 425px;
     color: var(--primary-dark);
     padding: 20px;
@@ -43,33 +43,92 @@ main {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+#logo {
+    width: 45%;
+    height: auto;
+}
+
+div#sabor label{
+    text-align: left;
+    width: 50%;
+}
+
 h1, h2, h3, hr {
     color: var(--primary-dark);
     font-family: "TAN-NIMBUS";
 }
 
-p.aviso {
+#aviso {
     font-size: small;
 }
 
+.container, #cookies {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    gap: 5px;
+}
+
+.container {
+    margin-bottom: 20px;
+}
+
+.aligned {
+    align-items: start;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* text-align: left; */
+}
+
+#cookies .aligned label {
+    width: 45%;
+}
+
+#cookies .aligned input {
+    width: 20%;
+}
+
+.container .aligned input {
+    width: 200px;
+}
+
+#cookies .aligned span {
+    width: 30%;
+    text-align: end;
+}
+
 input, textarea {
+    border-color: #8f323b85;
+    outline: none;
     width: 250px;
     background-color: var(--secondary-light);
     color: var(--primary-dark);
     border-radius: 10px 2px;
-    margin-top: 5px;
-}
-
-textarea {
-    resize: none;
-    width: 300px;
 }
 
 input:hover {
     background-color: #c5a1a7;
 }
 
+input[type="number"] {
+    text-align: center;
+    width: 80px;
 
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+textarea {
+    resize: none;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+}
+
+/* Botão */
 input[type="submit"] {
     width: 95px;
     height: 35px;
@@ -81,31 +140,7 @@ input[type="submit"]:hover {
     background-color: var(--dark-color);
     cursor: pointer;
 }
-
-div.cookies input {
-    border-radius: 10px 2px;
-}
-
-input[type="number"] {
-    text-align: center;
-    width: 50px;
-}
-
-footer {
-    background-color: var(--secondary-light);
-    color: var(--primary-light);
-    padding: 1px;
-}
-
-footer a {
-    color: var(--primary-light);
-    text-decoration: none;
-    transition: .7s;
-}
-
-footer a:hover {
-    color: var(--primary-dark);
-    font-weight: bold;
-    font-size: large;
-    text-decoration: underline;
+* {
+    /* scrollbar-width: thin; */
+    scrollbar-color: var(--primary-light) var(--secondary-light);
 }
