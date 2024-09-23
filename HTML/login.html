@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin</title>
+    <title>Cookies S.A. • Login</title>
+    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/login_style.css">
+    <link rel="stylesheet" href="../../CSS/inputs_style.css">
+    <link rel="stylesheet" href="../../CSS/footer.css">
+    <link rel="shortcut icon" href="../../Assets/Icons/s.a.ico" type="image/x-icon">
 </head>
 <body>
-    <h2>Login do Administrador</h2>
-    <form action="login.php" method="POST">
-        <label for="username">Usuário:</label>
-        <input type="text" id="username" name="username" required><br>
-        
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required><br>
-        
-        <input type="submit" value="Entrar">
-    </form>
+    <main>
+        <img id="logo" src="../Assets/Images/logo.png" alt="Logo da Cookies S.A.">
+        <!-- <h2>Login do Administrador</h2> -->
+        <form action="login.php" method="POST">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required><br>
+    
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required><br>
+    
+            <input type="submit" value="Entrar">
+        </form>
+    </main>
+    <footer>
+        <p>Copyright &copy; <a href="#">Cookies S/A</a><br>Created by <a href="https://linktr.ee/birabalaz">Erick Monteiro</a></p>
+    </footer>
 </body>
 </html>

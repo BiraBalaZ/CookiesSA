@@ -1,3 +1,30 @@
+function calcularTotal() {
+    let totalGeral = 0;
+    const precoPorCaixa = 10.00;
+    let cookies = document.getElementById("cookies").childElementCount;
+
+    for (let i = 1; i <= cookies; i++) {
+        let quantidade = document.getElementById("quantidade_sabor" + i).value;
+        let totalPorSabor = quantidade * precoPorCaixa;
+        document.getElementById("total_sabor" + i).innerText = "R$ " + totalPorSabor.toFixed(2);
+        totalGeral += totalPorSabor;
+    }
+
+    document.getElementById("total_geral").innerText = "Total: R$ " + totalGeral.toFixed(2);
+}
+
+function verificarCPF() {
+    const cpf = document.getElementById("cpf").value;
+    const cpfValido = validarCPF(cpf);
+
+    if (!cpfValido) {
+        alert("CPF inválido. Por favor, insira um CPF válido.");
+        return false; // Impede o envio do formulário
+    }
+
+    return true; // CPF válido, permite envio do formulário
+}
+
 function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
     if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
@@ -34,16 +61,4 @@ function validarCPF(cpf) {
     }
 
     return resto === parseInt(cpf.substring(10, 11));
-}
-
-function verificarCPF() {
-    const cpf = document.getElementById("cpf").value;
-    const cpfValido = validarCPF(cpf);
-
-    if (!cpfValido) {
-        alert("CPF inválido. Por favor, insira um CPF válido.");
-        return false; // Impede o envio do formulário
-    }
-
-    return true; // CPF válido, permite envio do formulário
 }

@@ -1,0 +1,49 @@
+main {
+    max-width: 425px;
+}
+
+div#sabor label{
+    text-align: left;
+    width: 50%;
+}
+
+#aviso {
+    font-size: small;
+}
+
+.container, #cookies {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    gap: 5px;
+}
+
+.container {
+    margin-bottom: 20px;
+}
+
+.aligned {
+    align-items: start;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* text-align: left; */
+}
+
+#cookies .aligned label {
+    width: 45%;
+}
+
+#cookies .aligned input {
+    width: 20%;
+}
+
+.container .aligned input {
+    width: 200px;
+}
+
+#cookies .aligned span {
+    width: 30%;
+    text-align: end;
+}

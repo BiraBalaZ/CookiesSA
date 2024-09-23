@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies S.A. • Pedidos</title>
+    <script src="../JS/script.js"></script>
+    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/pedido_style.css">
+    <link rel="stylesheet" href="../../CSS/inputs_style.css">
+    <link rel="stylesheet" href="../../CSS/footer.css">
+    <link rel="shortcut icon" href="../../Assets/Icons/s.a.ico" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <img id="logo" src="../Assets/Images/logo.png" alt="Logo da Cookies S.A.">
+        <h1>Faça seu Pedido</h1>
+        <hr>
+        <form action="processar_pedido.php" method="POST" onsubmit="return verificarCPF()">
+            <h2>Sabores Disponíveis</h2>
+            <p id="aviso">*Cada caixa contém 8 unidades de cookies deliciosos por R$ 10.00</p>
+            <div id="cookies">
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor1">Fúria Vermelha:</label>
+                    <input type="number" id="quantidade_sabor1" name="quantidade_sabor1" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor1">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor2">Brocado de Cacau:</label>
+                    <input type="number" id="quantidade_sabor2" name="quantidade_sabor2" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor2">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor3">Fibroso:</label>
+                    <input type="number" id="quantidade_sabor3" name="quantidade_sabor3" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor3">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor4">Mata Fome:</label>
+                    <input type="number" id="quantidade_sabor4" name="quantidade_sabor4" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor4">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor5">Brocado de Recheio:</label>
+                    <input type="number" id="quantidade_sabor5" name="quantidade_sabor5" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor5">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor7">Mata Fome 2.0:</label>
+                    <input type="number" id="quantidade_sabor6" name="quantidade_sabor6" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor6">R$ 0.00</span>
+                </div>
+
+                <div class="aligned" id="sabor">
+                    <label for="quantidade_sabor7">Sortidos!</label>
+                    <input type="number" id="quantidade_sabor7" name="quantidade_sabor7" value="0" min="0" oninput="calcularTotal()">
+                    <span id="total_sabor7">R$ 0.00</span>
+                </div>
+            </div>
+            <!-- Total do valor dos Cookies -->
+            <h3 id="total_geral">Total: R$ 0.00</h3>
+            
+            <hr>
+
+            <h2>Preencha com seus dados para contato e envio!</h2>
+            <div class="container">
+                <div class="aligned">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="aligned">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" minlength="11" maxlength="15" required>
+                </div>
+                <div class="aligned">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+                <div class="aligned">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" minlength="1" maxlength="5" required>
+                </div>
+                <div class="aligned">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento" name="complemento">
+                </div>
+                <div class="aligned">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="aligned">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" minlength="9" maxlength="14" required>
+                </div>
+            </div>
+
+            <hr>
+
+            <label for="mensagem">Mensagem:</label><br>
+            <textarea id="mensagem" name="mensagem" rows="6" cols="50" placeholder="Aqui você pode comentar, mandar mensagem, qualquer coisa! Abra seu coração."></textarea><br>
+
+            <input class="button" type="submit" value="Enviar Pedido">
+        </form>
+    </main>
+    
+    <footer>
+        <p>Copyright &copy; <a href="#">Cookies S/A</a><br>Created by <a href="https://linktr.ee/birabalaz">Erick Monteiro</a></p>
+    </footer>
+    <script src="../JS/script.js"></script>
+</body>
+</html>

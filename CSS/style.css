@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "TAN-NIMBUS";
+    src: url(../../Assets/Fonts/TAN-NIMBUS.ttf);
+}
+
+@font-face {
+    font-family: "SourceSerifPro";
+    src: url(../../Assets/Fonts/SourceSerifPro-Regular.ttf);
+}
+
+
+* {
+    scrollbar-color: var(--primary-light) var(--secondary-light);
+}
+
+:root {
+    --primary-dark: #8C2034;   /* Vermelho escuro */
+    --primary-light: #BF4B60;  /* Vermelho-rosado vibrante */
+    --secondary-light: #F2B6C1; /* Rosa claro */
+    --accent-color: #8F323C;   /* Vermelho suave */
+    --dark-color: #400102;     /* Vermelho muito escuro */
+}
+
+body {
+    text-align: center;
+    
+    font-family: "SourceSerifPro";
+
+    background-color: #c4929b;
+    color: var(--primary-dark);
+
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: var(--secondary-light);
+    margin: auto;
+    max-width: 1350px;
+    color: var(--primary-dark);
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#logo {
+    width: 250px;
+    height: auto;
+}
+
+h1, h2, h3, hr {
+    color: var(--primary-dark);
+    font-family: "TAN-NIMBUS";
+}

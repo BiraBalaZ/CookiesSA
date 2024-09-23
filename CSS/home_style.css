@@ -1,0 +1,12 @@
+.container-image img {
+    width: 500px;
+}
+
+.container h2 {
+    text-align: left;
+}
+
+.container p {
+    text-align: justify;
+}
+

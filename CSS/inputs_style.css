@@ -1,0 +1,130 @@
+input {
+    margin-bottom: 5px;
+    border-color: #8f323b85;
+    outline: none;
+    width: 250px;
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
+    border-radius: 10px 2px;
+}
+
+input, textarea {
+    border-color: #8f323b85;
+    outline: none;
+    width: 250px;
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
+    border-radius: 10px 2px;
+}
+
+input:hover {
+    background-color: #c5a1a7;
+}
+
+input[type="number"] {
+    text-align: center;
+    width: 80px;
+
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+textarea {
+    resize: none;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+}
+
+input {
+    outline: none;
+    width: 250px;
+    border-radius: 10px 2px;
+}
+
+/* Botão Fúria Vermelha */
+#furiavermelha h2, p {
+    color: #440f1c;
+}
+
+#furiavermelha input {
+    background-color: #440f1c;
+    border-color: #edafb5;
+    color: #edafb5;
+    transition: .3s;
+}
+
+#furiavermelha input:hover {
+    background-color: #edafb5;
+    border-color: #440f1c;
+    color: #440f1c;
+}
+
+/* Botão Fibroso */
+#fibroso h2, p {
+    color: #704507;
+}
+
+#fibroso input {
+    background-color: #704507;
+    border-color: #fdd59a;
+    color: #fdd59a;
+    transition: .3s;
+}
+
+#fibroso input:hover {
+    background-color: #fdd59a;
+    border-color: #704507;
+    color: #704507;
+}
+
+/* Botão Brocado de Cacau e Recheio */
+#brocado h2, p {
+    color: #3f1b0a;
+}
+
+#brocado input {
+    background-color: #3f1b0a;
+    border-color: #b8906c;
+    color: #b8906c;
+    transition: .3s;
+}
+
+#brocado input:hover {
+    background-color: #b8906c;
+    border-color: #3f1b0a;
+    color: #3f1b0a;
+}
+
+/* Botão Mata Fome e Mata Fome 2.0 */
+#matafome h2, p {
+    color: #412c17;
+}
+
+#matafome input {
+    background-color: #412c17;
+    border-color: #e8c78d;
+    color: #e8c78d;
+    transition: .3s;
+}
+
+#matafome input:hover {
+    background-color: #e8c78d;
+    border-color: #412c17;
+    color: #412c17;
+}
+
+/* Botão */
+input[type="submit"] {
+    width: 95px;
+    height: 35px;
+    background-color: var(--primary-dark);
+    color: var(--secondary-light);
+}
+
+input[type="submit"]:hover {
+    background-color: var(--dark-color);
+    cursor: pointer;
+}
+
