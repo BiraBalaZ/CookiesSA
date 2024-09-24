@@ -1,3 +1,14 @@
+body {
+    overflow-x: hidden;
+}
+
 main {
     max-width: 425px;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
