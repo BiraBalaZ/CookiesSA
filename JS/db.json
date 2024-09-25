@@ -1,3 +1,7 @@
 {
-"KEY":"senhateste"
+    "login":{
+        "usuario":"sarah",
+        "senha":"senhadasarah"
+    }
+    
 }
