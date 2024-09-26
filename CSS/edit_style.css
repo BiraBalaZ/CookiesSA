@@ -70,7 +70,7 @@ table {
     margin-left: 80px;
 }
 
-th {
+th, td {
     text-align: center;
     padding: 0px 10px;
 }

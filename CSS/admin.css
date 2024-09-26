@@ -1,13 +1,21 @@
+main {
+    max-width: 1800px;
+}
+
 table, th, td {
     border: 1px solid var(--primary-dark);
     border-collapse: collapse;
+}
+
+.tabela {
+    overflow-x:auto;
 }
 
 table {
     margin: auto;
 }
 
-th {
+th, td {
     text-align: center;
     padding: 0px 10px;
 }
