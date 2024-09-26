@@ -32,8 +32,7 @@ if (window.location.pathname.includes('/HTML/login.html')) {
             .then(response => response.json())
             .then(data => {
                 const user = data.login;
-                console.log(user)
-
+                console.log(user);
                 if (username === user.usuario && password === user.senha) {
                     // Salva a autenticação no LocalStorage
                     localStorage.setItem('isAuthenticated', 'true');
@@ -54,7 +53,7 @@ if (window.location.pathname.includes('/HTML/login.html')) {
 
 
 if (window.location.pathname.includes('/HTML/admin.html')) {
-    window.onload = isAuth
+    window.onload = isAuth;
 }
 // Reseta o tempo de login caso a pessoa volte a atividade no site
 window.addEventListener('mousemove', resetLogoutTimer);

@@ -57,3 +57,20 @@ h1, h2, h3, hr {
     color: var(--primary-dark);
     font-family: "TAN-NIMBUS";
 }
+
+div.custom-select {
+    margin-left: 80px;
+    text-align: left;
+}
+
+div.custom-select select {
+    width: 200px;
+    border: none;
+    color: var(--primary-dark);
+    background-color: #c4929b;
+}
+
+div.custom-select option {
+    font-weight: bolder;
+    background-color: #c4929b;
+}

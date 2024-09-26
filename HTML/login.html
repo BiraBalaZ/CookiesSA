@@ -15,18 +15,22 @@
     <main>
         <img id="logo" src="../Assets/Images/logo.png" alt="Logo da Cookies S.A.">
 
-        <form id="auth-form">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required><br>
-    
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required><br>
-    
-            <input type="submit" value="Entrar">
-        </form>
+        <div class="login">
+            <form id="auth-form">
+                <div class="prompt">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="prompt">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <input type="submit" value="Entrar">
+            </form>
+        </div>
     </main>
     <footer>
-        <p style="color: var(--primary-dark);">Copyright &copy; <a href="home.html">Cookies S/A</a><br>Created by <a href="https://linktr.ee/birabalaz">Erick Monteiro</a></p>
+        <p style="color: var(--primary-dark);">Copyright &copy; <a href="../index.html">Cookies S/A</a><br>Created by <a href="https://linktr.ee/birabalaz">Erick Monteiro</a></p>
     </footer>
 </body>
 </html>
