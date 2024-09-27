@@ -1,52 +1,44 @@
 <?php
-require 'conexao.php'; // Conexão com o banco de dados
+require 'conexao.php'; // Arquivo de conexão com o banco de dados
 
-// Verificar se o ID do pedido foi passado via GET
-if (isset($_GET['id'])) {
-    $pedido_id = $_GET['id'];
+// Pega o ID do pedido da URL
+$id_pedido = $_GET['id'];
 
-    // Buscar os dados do pedido específico
-    $stmt = $conn->prepare("SELECT p.id, p.cookies, p.status, p.data_pedido, c.nome, c.cpf, c.endereco, c.email, c.telefone 
-                            FROM pedidos p 
-                            JOIN clientes c ON p.cliente_id = c.id 
-                            WHERE p.id = ?");
-    $stmt->bind_param("i", $pedido_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+// Query para buscar os dados do pedido específico
+$query = "SELECT p.id, p.cookies, p.status, p.data_pedido, c.nome, c.cpf, c.telefone, c.email, c.endereco, c.numero, c.complemento, c.cep
+          FROM pedidos p 
+          JOIN clientes c ON p.cliente_id = c.id
+          WHERE p.id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('i', $id_pedido);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $pedido = $result->fetch_assoc();
-    } else {
-        echo "Pedido não encontrado.";
-        exit;
-    }
+// Verifica se encontrou o pedido
+if ($result->num_rows > 0) {
+    $pedido = $result->fetch_assoc();
 } else {
-    echo "ID do pedido não informado.";
-    exit;
+    echo "Pedido não encontrado!";
+    exit();
 }
 
-// Se o formulário foi enviado, atualizar os dados no banco de dados
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $endereco = $_POST['endereco'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $cookies = $_POST['cookies'];
-    $status = $_POST['status'];
+// Decodificar os cookies em um array
+$cookies = json_decode($pedido['cookies'], true);
 
-    // Atualizar os dados no banco de dados
-    $stmt = $conn->prepare("UPDATE clientes c, pedidos p 
-                            SET c.nome = ?, c.cpf = ?, c.endereco = ?, c.email = ?, c.telefone = ?, p.cookies = ?, p.status = ?
-                            WHERE p.id = ? AND c.id = p.cliente_id");
-    $stmt->bind_param("sssssssi", $nome, $cpf, $endereco, $email, $telefone, $cookies, $status, $pedido_id);
+// Definir o valor por caixa de cookies
+$valor_por_caixa = 10.00;
+$total_pedido = 0;
 
-    if ($stmt->execute()) {
-        echo "Pedido atualizado com sucesso!";
-    } else {
-        echo "Erro ao atualizar o pedido.";
-    }
-}
+// Mapear os nomes dos sabores
+$sabores = [
+    'Sabor 1' => 'Fúria Vermelha',
+    'Sabor 2' => 'Brocado de Cacau',
+    'Sabor 3' => 'Fibroso',
+    'Sabor 4' => 'Mata Fome',
+    'Sabor 5' => 'Brocado de Recheio',
+    'Sabor 6' => 'Mata Fome 2.0',
+    'Sabor 7' => 'Sortidos'
+];
 ?>
 
 <!DOCTYPE html>
@@ -54,39 +46,95 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Pedido</title>
+    <title>Cookies S.A. • Pedido</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/inputs_style.css"> 
+    <link rel="stylesheet" href="../CSS/edit_style.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="shortcut icon" href="../Assets/Icons/s.a.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>Editar Pedido</h1>
+    <main>
+        <img id="logo" src="../Assets/Images/logo.png" alt="Logo da Cookies S.A.">
 
-    <form method="POST" action="">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value="<?php echo $pedido['nome']; ?>" required><br>
+        <div id="cabecalho">
+            <h2>Pedido Número: <?php echo $pedido['id']; ?></h2>
+            <h2>Situação: <?php echo $pedido['status']; ?></h2>
+        </div>
 
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" value="<?php echo $pedido['cpf']; ?>" required><br>
+        <div class="container">
+            <div class="aligned">
+                <label for="nome">Nome: </label>
+                <input type="text" id="nome" name="nome" value="<?php echo $pedido['nome']; ?>" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" value="<?php echo $pedido['cpf']; ?>" minlength="11" maxlength="15" required>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" value="<?php echo $pedido['telefone']; ?>" minlength="9" maxlength="14" required>
+            </div>
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" value="<?php echo $pedido['endereco']; ?>" required><br>
+            <div class="aligned">
+                <label for="endereco">End.:  </label>
+                <input type="text" id="endereco" name="endereco" value="<?php echo $pedido['endereco']; ?>" required>
+                <label for="numero"> Nº: </label>
+                <input type="text" id="numero" name="numero" value="<?php echo $pedido['numero']; ?>" minlength="1" maxlength="5" class="number" required>
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento" value="<?php echo $pedido['complemento']; ?>">
+            </div>
 
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" value="<?php echo $pedido['email']; ?>" required><br>
+            <div class="aligned">
+                <label for="email">E-mail: </label>
+                <input type="email" id="email" name="email" value="<?php echo $pedido['email']; ?>" required>
+                <label for="cep">CEP:</label>
+                <input type="number" id="cep" name="cep" value="<?php echo $pedido['cep']; ?>" required>
+            </div>
 
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" value="<?php echo $pedido['telefone']; ?>" required><br>
+            <!-- Mais campos, caso necessário -->
 
-        <label for="cookies">Pedido de Cookies:</label><br>
-        <textarea id="cookies" name="cookies" rows="4" cols="50" required><?php echo $pedido['cookies']; ?></textarea><br>
+            <h3>Alterar Situação do Pedido</h3>
+            <div class="custom-select">
+                <select name="status">
+                    <option value="Pendente" <?php echo $pedido['status'] == 'Pendente' ? 'selected' : ''; ?>>Pendente</option>
+                    <option value="Concluído" <?php echo $pedido['status'] == 'Concluído' ? 'selected' : ''; ?>>Concluído</option>
+                    <option value="Cancelado" <?php echo $pedido['status'] == 'Cancelado' ? 'selected' : ''; ?>>Cancelado</option>
+                </select>
+            </div>
 
-        <label for="status">Status do Pedido:</label>
-        <select id="status" name="status" required>
-            <option value="Pendente" <?php if ($pedido['status'] == 'Pendente') echo 'selected'; ?>>Pendente</option>
-            <option value="Concluído" <?php if ($pedido['status'] == 'Concluído') echo 'selected'; ?>>Concluído</option>
-        </select><br><br>
+            <!-- Botão para salvar alterações -->
+            <div class="buttons">
+                <input type="submit" value="Salvar">
+            </div>
 
-        <input type="submit" value="Atualizar Pedido">
-    </form>
+            <hr>
 
-    <a href="admin_page.php">Voltar à Página de Administração</a>
+            <h2>Detalhes do Pedido:</h2>
+            <textarea id="cookies" name="cookies" rows="4" cols="50" required><?php echo $pedido['cookies']; ?></textarea>
+            <table>
+                <tr>
+                    <th>Sabor</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                </tr>
+                <?php 
+                foreach ($cookies as $sabor => $quantidade) {
+                    if ($quantidade > 0) {
+                        // Verificar se o sabor está no array de mapeamento e usar o nome correspondente
+                        $nome_sabor = isset($sabores[$sabor]) ? $sabores[$sabor] : $sabor;
+                        $valor = $quantidade * $valor_por_caixa;
+                        $total_pedido += $valor;
+                        echo "<tr>
+                                <td>$nome_sabor</td>
+                                <td>$quantidade</td>
+                                <td>R$ " . number_format($valor, 2, ',', '.') . "</td>
+                              </tr>";
+                    }
+                }
+                ?>
+            </table>
+            <h3>TOTAL :  R$ <?php echo number_format($total_pedido, 2, ',', '.'); ?></h3>
+        </div>
+    </main>
+    <footer>
+        <p style="color: var(--primary-dark);">Copyright &copy; <a href="../index.html">Cookies S/A</a><br>Created by <a href="https://linktr.ee/birabalaz">Erick Monteiro</a></p>
+    </footer>
 </body>
 </html>

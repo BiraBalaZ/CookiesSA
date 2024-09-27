@@ -1,59 +1,56 @@
 <?php
-require 'conexao.php';
+$dbHost = 'Localhost';
+$dbUsername = 'root';
+$dbPassword = '';
+$dbName = 'cookiessa';
 
-function validarCPF($cpf) {
-    // Remove caracteres não numéricos
-    $cpf = preg_replace('/[^0-9]/', '', $cpf);
-    // Verifica se tem 11 dígitos e se todos os números são iguais (invalidando CPF sequenciais)
-    if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
-        return false;
-    }
+// Conectando
+$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
-    // Calcula os dígitos verificadores
-    for ($t = 9; $t < 11; $t++) {
-        for ($d = 0, $c = 0; $c < $t; $c++) {
-            $d += $cpf[$c] * (($t + 1) - $c);
-        }
-        $d = ((10 * $d) % 11) % 10;
-        if ($cpf[$c] != $d) {
-            return false;
-        }
-    }
-
-    return true;
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $endereco = $_POST['endereco'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $cookies = $_POST['cookies'];
+// Receber dados do formulário
+$nome = $_POST['nome'];
+$cpf = $_POST['cpf'];
+$telefone = $_POST['telefone'];
+$email = $_POST['email'];
+$endereco = $_POST['endereco'];
+$numero = $_POST['numero'];
+$complemento = $_POST['complemento'];
 
-    // Valida o CPF antes de continuar
-    if (!validarCPF($cpf)) {
-        echo "CPF inválido. Por favor, insira um CPF válido.";
-        exit();
+// Sabores e quantidades
+$quantidade_sabor1 = $_POST['quantidade_sabor1'];
+$quantidade_sabor2 = $_POST['quantidade_sabor2'];
+$quantidade_sabor3 = $_POST['quantidade_sabor3'];
+$quantidade_sabor4 = $_POST['quantidade_sabor4'];
+$quantidade_sabor5 = $_POST['quantidade_sabor5'];
+$quantidade_sabor6 = $_POST['quantidade_sabor6'];
+$quantidade_sabor7 = $_POST['quantidade_sabor7'];
+
+// Montar string com os cookies e quantidades
+$cookies = "Sabor 1: $quantidade_sabor1, Sabor 2: $quantidade_sabor2, Sabor 3: $quantidade_sabor3, Sabor 4: $quantidade_sabor4, Sabor 5: $quantidade_sabor5, Sabor 6: $quantidade_sabor6, Sabor 7: $quantidade_sabor7";
+
+// Inserir dados na tabela clientes
+$sql_cliente = "INSERT INTO clientes (nome, cpf, telefone, email, endereco, numero, complemento) VALUES ('$nome', '$cpf', '$telefone', '$email', '$endereco', '$numero', '$complemento')";
+
+if ($conn->query($sql_cliente) === TRUE) {
+    // Obter o ID do cliente inserido
+    $cliente_id = $conn->insert_id;
+
+    // Inserir dados na tabela pedidos
+    $sql_pedido = "INSERT INTO pedidos (cliente_id, cookies) VALUES ('$cliente_id', '$cookies')";
+
+    if ($conn->query($sql_pedido) === TRUE) {
+        echo "Pedido inserido com sucesso!";
+    } else {
+        echo "Erro ao inserir pedido: " . $conn->error;
     }
-
-    // Insere o cliente no banco de dados
-    $stmt = $conn->prepare("INSERT INTO clientes (nome, cpf, endereco, email, telefone) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $nome, $cpf, $endereco, $email, $telefone);
-    $stmt->execute();
-    $cliente_id = $stmt->insert_id;
-
-    // Insere o pedido no banco de dados
-    $stmt2 = $conn->prepare("INSERT INTO pedidos (cliente_id, cookies) VALUES (?, ?)");
-    $stmt2->bind_param("is", $cliente_id, $cookies);
-    $stmt2->execute();
-
-    // Envia e-mail para o administrador
-    $to = "admin@cookies.com"; // E-mail do administrador
-    $subject = "Novo Pedido Recebido";
-    $message = "Novo pedido de $nome\nCookies: $cookies\n";
-    mail($to, $subject, $message);
-
-    echo "Pedido enviado com sucesso!";
+} else {
+    echo "Erro ao inserir cliente: " . $conn->error;
 }
+
+// Fechar a conexão
+$conn->close();
 ?>

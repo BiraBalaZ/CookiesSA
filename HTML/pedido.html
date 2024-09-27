@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookies S.A. • Pedidos</title>
     <script src="../JS/script.js"></script>
-    <link rel="stylesheet" href="../../CSS/style.css">
-    <link rel="stylesheet" href="../../CSS/pedido_style.css">
-    <link rel="stylesheet" href="../../CSS/inputs_style.css">
-    <link rel="stylesheet" href="../../CSS/footer.css">
-    <link rel="shortcut icon" href="../../Assets/Icons/s.a.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/pedido_style.css">
+    <link rel="stylesheet" href="../CSS/inputs_style.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="shortcut icon" href="../Assets/Icons/s.a.ico" type="image/x-icon">
 </head>
 <body>
     <main>
         <img id="logo" src="../Assets/Images/logo.png" alt="Logo da Cookies S.A.">
         <h1>Faça seu Pedido</h1>
         <hr>
-        <form action="processar_pedido.php" method="POST" onsubmit="return verificarCPF()">
+        <form action="../PHP/processar_pedido.php" method="POST" onsubmit="return verificarCPF()">
             <h2>Sabores Disponíveis</h2>
             <p id="aviso">*Cada caixa contém 8 unidades de cookies deliciosos por R$ 10.00</p>
             <div id="cookies">
@@ -96,6 +96,10 @@
                 <div class="aligned">
                     <label for="telefone">Telefone:</label>
                     <input type="text" id="telefone" name="telefone" minlength="9" maxlength="14" required>
+                </div>
+                <div class="aligned">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" minlength="8" maxlength="9" required>
                 </div>
             </div>
 

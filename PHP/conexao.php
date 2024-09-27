@@ -1,13 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "seu_usuario";
-$password = "sua_senha";
-$dbname = "cookies_sa";
+$dbHost = 'Localhost';
+$dbUsername = 'root';
+$dbPassword = '';
+$dbName = 'cookiessa';
 
 // Conectando
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
-?>

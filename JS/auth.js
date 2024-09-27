@@ -38,7 +38,7 @@ if (window.location.pathname.includes('/HTML/login.html')) {
                     localStorage.setItem('isAuthenticated', 'true');
                     
                     // Redireciona para a página pós login
-                    window.location.href = "../HTML/admin.html"; 
+                    window.location.href = "../PHP/admin_page.php"; 
                 } else {
                     alert('Usuario ou senha incorretos')
                     // document.getElementById('error-msg').style.display = 'block';
